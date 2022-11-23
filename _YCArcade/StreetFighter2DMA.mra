@@ -1,0 +1,94 @@
+<!-- JTCPS1 - FPGA compatible core of CAPCOM CPS hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2020. Please support the author
+              Patreon: https://patreon.com/topapate
+              Paypal:  https://paypal.me/topapate
+
+              The author does not endorse or participate in illegal distribution
+              of CAPCOM copyrighted material. This work can be used with legally
+              obtained ROM dumps of CAPCOM games or with homework software for
+              the CPS platform.
+
+-->
+
+<misterromdescription>
+    <about author="jotego" webpage="https://patreon.com/topapate"
+                           source ="https://github.com/jotego/jtcps1"
+                           twitter="@topapate"/>
+    <name>CPS1 DMA test 2</name>
+    <mameversion>0217</mameversion>
+    <setname>cps1_dma2</setname>
+    <year>1991</year>
+    <manufacturer>Capcom</manufacturer>
+    <rbf>jtcps1</rbf>
+    <rom index="0" zip="sf2eb_dma_tests.zip" md5="none">
+        <!-- relative position of each ROM section in the file, discounting the header, in kilobytes -->
+        <!-- Size of M68000 code 1024 kB -->
+        <!-- Sound CPU size 64 kB -->
+        <part>00 04 </part>
+        <!-- OKI samples size 256 kB -->
+        <part>40 04 </part>
+        <!-- Graphics size 6144 kB -->
+        <part>40 05 </part>
+        <part repeat="10">FF</part>
+        <!-- CPS-B config for sf2eb -->
+        <part> 08 47 FF FF FF FF 14 12 10 0E 0C 36 00 0A 08 14 02 00 </part>
+        <!-- Mapper for  -->
+        <part> 23 40 C8 73 F7 </part>
+        <part> 08 </part>
+        <part repeat="24">FF</part>
+        <!-- maincpu -->
+        <interleave output="16">
+            <part name="sf2e_37b.11f" map="01"/>
+            <part name="sf2e_30b.11e" map="10"/>
+        </interleave>
+        <interleave output="16">
+            <part name="sf2e_38b.12f" map="01"/>
+            <part name="sf2e_31b.12e" map="10"/>
+        </interleave>
+        <interleave output="16">
+            <part name="sf2_35b.9f" map="01"/>
+            <part name="sf2_28b.9e" map="10"/>
+        </interleave>
+        <interleave output="16">
+            <part name="sf2_36b.10f" map="01"/>
+            <part name="sf2_29b.10e" map="10"/>
+        </interleave>
+        <!-- audiocpu -->
+        <part name="sf2_9.12a" crc="a4823a1b"/>
+        <!-- oki -->
+        <part name="sf2_18.11c" crc="7f162009"/>
+        <part name="sf2_19.12c" crc="beade53f"/>
+        <!-- gfx -->
+        <interleave output="64">
+            <part name="sf2-5m.4a" crc="22c9cc8e"  map="00000021"/>
+            <part name="sf2-7m.6a" crc="57213be8"  map="00002100"/>
+            <part name="sf2-1m.3a" crc="ba529b4f"  map="00210000"/>
+            <part name="sf2-3m.5a" crc="4b1b33a8"  map="21000000"/>
+        </interleave>
+        <interleave output="64">
+            <part name="sf2-6m.4c" crc="2c7e2229"  map="00000021"/>
+            <part name="sf2-8m.6c" crc="b5548f17"  map="00002100"/>
+            <part name="sf2-2m.3c" crc="14b84312"  map="00210000"/>
+            <part name="sf2-4m.5c" crc="5e9cd89a"  map="21000000"/>
+        </interleave>
+        <interleave output="64">
+            <part name="sf2-13m.4d" crc="994bfa58"  map="00000021"/>
+            <part name="sf2-15m.6d" crc="3e66ad9d"  map="00002100"/>
+            <part name="sf2-9m.3d" crc="c1befaa8"  map="00210000"/>
+            <part name="sf2-11m.5d" crc="0627c831"  map="21000000"/>
+        </interleave>
+    </rom>
+
+    <!-- Set bit 1 for vertical games.
+         Set bit 2 for games using 4-way joysticks -->
+    <rom index="1"><part> 00 </part></rom>
+
+    <buttons names="B0,B1,B2,B3,B4,B5,Start,Coin,Pause"
+        default="A,B,X,Y,R,L,Select,Select,Start"/>
+</misterromdescription>
